@@ -26,7 +26,7 @@ def iter_coordenadas():
 def calcular_centros(coords, cant_ini=1, radio_lim=30):
     coordenadas = np.array(coords)
     cant_agrup = cant_ini
-    print('Iniciando KMeans con', cant_agrup, 'centros')
+    print('Iniciando KMeans con', cant_agrup, 'centros y', len(coordenadas), 'coordenadas.')
     while True:
         if cant_agrup > len(coordenadas):
             return []
