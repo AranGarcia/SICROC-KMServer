@@ -52,10 +52,13 @@ def calcular_centros(coords, cant_ini=1, radio_lim=30):
     centers = []
     for i, c in enumerate(clusters):
         maxdis = 0
-        for coord in c:
-            cordist = _dist(coord, km.cluster_centers_[i])
-            maxdis = cordist if cordist > maxdis else maxdis
-        centers.append([list(km.cluster_centers_[i]), maxdis])
+        if len(c) > 1:
+            for coord in c:
+                cordist = _dist(coord, km.cluster_centers_[i])
+                maxdis = cordist if cordist > maxdis else maxdis
+            centers.append([list(km.cluster_centers_[i]), maxdis])
+        else:
+            print('Descartando cluster en {}, solo tiene una coordenada.'.format(c))
 
     print('Algoritmo finalizado. Devolviendo centros.')
     return centers
