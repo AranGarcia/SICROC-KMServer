@@ -1,4 +1,5 @@
 from django.http import HttpResponse, JsonResponse
+from datetime import datetime
 import json
 
 from . import data_access
@@ -6,6 +7,7 @@ from . import kmeans
 
 
 def centers(req):
+    # TODO: Agregar hora con formato HHMMSS
     if req.method != 'GET':
         resp = JsonResponse(
             {'error': 'method not allowd', 'description':
@@ -37,4 +39,8 @@ def _create_dict(centers):
 
         center_object['radio'] = c[1]
         center_list.append(center_object)
-    return {'complain-centers': center_list}
+    t = datetime.now().time()
+    return {
+        'complain-centers': center_list,
+        'time': '%02d%02d%02d' % (t.hour, t.minute, t.second)
+    }
