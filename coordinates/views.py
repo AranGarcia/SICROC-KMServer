@@ -45,8 +45,10 @@ def _create_dict(centers):
 
         center_object['radio'] = c[1]
         center_list.append(center_object)
-    t = datetime.now().time()
+    t = datetime.utcnow()
     return {
         'complain-centers': center_list,
-        'time': '%02d%02d%02d' % (t.hour, t.minute, t.second)
+        # 'fecha': '%02d%02d%02d' % (t.hour, t.minute, t.second)
+        'fecha': '%02d-%02d-%02dT%02d:%02d:%02d.%03dZ' % (
+            t.year, t.month, t.day, t.hour, t.minute, t.second, t.microsecond // 1000)
     }
