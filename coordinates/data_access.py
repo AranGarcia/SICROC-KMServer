@@ -68,14 +68,8 @@ def get_coordinates():
             url=COORDINATES_URL,
             headers=h
         )
-    return resp.json()
-    centers = []
-    for i, c in enumerate(resp.json(), 1):
-        center_object = {}
-        center_object['center'] = {}
-        center_object['center']['type'] = 'Point'
-        center_object['center']['coordinates'] = (0,0)
-        center_object['radio'] = 3.14
-        centers.append(center_object)
 
-    return centers
+    if resp.status_code != 200:
+        raise Exception('No se puede obtener las coordenadas del servicio')
+
+    return resp.json()

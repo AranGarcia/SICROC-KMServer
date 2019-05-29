@@ -18,7 +18,13 @@ def centers(req):
         return resp
 
     print('Obteniendo coordenadas')
-    data = data_access.get_coordinates()
+    try:
+        data = data_access.get_coordinates()
+    except Exception:
+        return JsonResponse(
+            {'message': 'No se pudieron obtener las coordenadas de las denuncias.'},
+            status=503
+        )
     print('Calculando centros')
     result = kmeans.calcular_centros(data)
 
