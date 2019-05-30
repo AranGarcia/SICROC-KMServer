@@ -47,7 +47,7 @@ def _create_dict(centers):
         center_list.append(center_object)
     t = datetime.utcnow()
     return {
-        'complain-centers': center_list,
+        'complain_centers': center_list,
         # 'fecha': '%02d%02d%02d' % (t.hour, t.minute, t.second)
         'fecha': '%02d-%02d-%02dT%02d:%02d:%02d.%03dZ' % (
             t.year, t.month, t.day, t.hour, t.minute, t.second, t.microsecond // 1000)
