@@ -7,6 +7,7 @@ robo de combustible.
 import math
 import numpy as np
 
+from geopy.distance import distance, lonlat
 from sklearn.cluster import KMeans
 
 
@@ -74,7 +75,8 @@ def _validar_modelo(modelo, coord, radio_lim):
 
 
 def _dist(p1, p2):
-    return math.sqrt(((p1[0] - p2[0]) ** 2) + ((p1[1] - p2[1]) ** 2))
+    """Calcula distancia entre coordenadas de (lon, lat)"""
+    return distance((p1[0], p1[1]), (p2[0], p2[1])).m
 
 
 if __name__ == '__main__':
