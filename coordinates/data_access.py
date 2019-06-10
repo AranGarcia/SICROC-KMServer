@@ -1,8 +1,6 @@
 import json
 import requests
 
-from . models import OAuthAccess
-
 COORDINATES_URL = "https://damp-ocean-98658.herokuapp.com/api/v1/user/complain/coordinates"
 AUTH_URL = "https://auth-service-huachicol.herokuapp.com/oauth/token"
 
