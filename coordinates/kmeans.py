@@ -24,11 +24,12 @@ def iter_coordenadas():
         yield (float(x.strip()), float(y.strip()))
 
 
-def calcular_centros(coords, cant_ini=1, radio_lim=30):
+def calcular_centros(coords, cant_ini=1, radio_lim=500):
     coordenadas = np.array(coords)
     cant_agrup = cant_ini
     print('Iniciando KMeans con', cant_agrup, 'centros y', len(coordenadas), 'coordenadas.')
     while True:
+        print('Cantidad de clusters:', cant_agrup)
         if cant_agrup > len(coordenadas):
             return []
         km = KMeans(
@@ -39,7 +40,7 @@ def calcular_centros(coords, cant_ini=1, radio_lim=30):
         if _validar_modelo(km, coordenadas, radio_lim):
             # Stop iterating the number of clusters and
             # build the centers with their radiuses
-            print('Cantida de clusters:', cant_agrup)
+            print('Se encontró las agrupaciones óptimas:', cant_agrup)
             break
         cant_agrup += 1
 
@@ -76,6 +77,7 @@ def _validar_modelo(modelo, coord, radio_lim):
 
 def _dist(p1, p2):
     """Calcula distancia entre coordenadas de (lon, lat)"""
+    # print("\t", p1, p2, distance((p1[0], p1[1]), (p2[0], p2[1])).m)
     return distance((p1[0], p1[1]), (p2[0], p2[1])).m
 
 
